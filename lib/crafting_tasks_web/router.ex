@@ -5,7 +5,7 @@ defmodule CraftingTasksWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", CraftingTasksWeb do
+  scope "/api/tasks", CraftingTasksWeb do
     pipe_through :api
 
     post "/sort", TaskController, :sort
