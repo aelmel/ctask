@@ -7,5 +7,7 @@ defmodule CraftingTasksWeb.Router do
 
   scope "/api", CraftingTasksWeb do
     pipe_through :api
+
+    post "/sort", TaskController, :sort
   end
 end
