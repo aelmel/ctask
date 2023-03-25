@@ -9,7 +9,7 @@ defmodule CraftingTasksWeb.TaskController do
   def sort(conn, params) do
     sorted =
       params
-      |> Map.get( "tasks", [])
+      |> Map.get("tasks", [])
       |> Sorter.sort()
 
     json(conn, %{"tasks" => sorted})
