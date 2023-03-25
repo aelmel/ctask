@@ -3,8 +3,6 @@ defmodule CraftingTasks.Sorter do
   Sorting algorithm
   """
 
-  def sort() do
-
+  def sort(tasks) do
   end
-
 end
