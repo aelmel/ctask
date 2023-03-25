@@ -9,5 +9,6 @@ defmodule CraftingTasksWeb.Router do
     pipe_through :api
 
     post "/sort", TaskController, :sort
+    post "/script", TaskController, :script
   end
 end

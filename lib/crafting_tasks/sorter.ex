@@ -2,7 +2,7 @@ defmodule CraftingTasks.Sorter do
   @moduledoc """
   Sorting algorithm
   """
-
+  @spec sort(list()) :: list()
   def sort(tasks) do
     mappedTask =
       tasks
