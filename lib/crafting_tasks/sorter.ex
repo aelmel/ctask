@@ -4,7 +4,7 @@ defmodule CraftingTasks.Sorter do
   """
   @spec sort(list()) :: list()
   def sort(tasks) do
-    mappedTask =
+    mapped_task =
       tasks
       |> Enum.map(fn task ->
         {task["name"], task}
@@ -15,8 +15,8 @@ defmodule CraftingTasks.Sorter do
 
     []
     |> sort_tasks(deps)
-    |> Enum.map(fn taskName ->
-      Map.get(mappedTask, taskName)
+    |> Enum.map(fn task_name ->
+      Map.get(mapped_task, task_name)
     end)
   end
 

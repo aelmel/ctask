@@ -25,5 +25,4 @@ defmodule CraftingTasksWeb.TaskController do
     script = Enum.join(["#!/usr/bin/env bash"] ++ cmds, "\n")
     text(conn, script)
   end
-
 end
