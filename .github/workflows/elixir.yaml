@@ -16,17 +16,17 @@ jobs:
   test:
     
     runs-on: ubuntu-latest
-    name: Test on OTP ${{version.otp}} / Elixir ${{versio.elixir}}
+    name: Test on OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
     strategy:
-      version:
+      matrix:
         otp: ['25.0.4']    
         elixir: ['1.14.1'] 
     steps:
     - name: Set up Elixir
       uses: erlef/setup-beam@v1
       with:
-        otp-version: ${{version.otp}}
-        elixir-version: ${{version.elixir}}
+        otp-version: ${{matrix.otp}}
+        elixir-version: ${{matrix.elixir}}
 
     - name: Checkout code
       uses: actions/checkout@v3
