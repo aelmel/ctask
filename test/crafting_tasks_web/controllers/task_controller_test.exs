@@ -63,7 +63,26 @@ defmodule CraftingTasksWeb.TaskControllerTest do
 
     test "generate wrong format ", %{conn: conn} do
       conn = post(conn, ~p"/api/tasks/sort", %{"tasks" => %{}})
-      assert json_response(conn, 200)["tasks"] == []
+      assert json_response(conn, 400)["error"] == "expected list"
+    end
+
+    test "cycle detect", %{conn: conn}  do
+      payload = %{
+        "tasks" => [
+          %{"command" => "cat /tmp/file1", "name" => "task-2", "requires" => ["task-3"]},
+          %{
+            "command" => "echo 'Hello World!' > /tmp/file1",
+            "name" => "task-3",
+            "requires" => ["task-1"]
+          },
+          %{"command" => "rm /tmp/file1", "name" => "task-4", "requires" => ["task-2", "task-3"]},
+          %{"command" => "touch /tmp/file1", "name" => "task-1", "requires" => ["task-2"]}
+        ]
+      }
+
+      conn = post(conn, ~p"/api/tasks/sort", payload)
+      assert json_response(conn, 400)["error"] == "cannot find non dependent task"
+
     end
   end
 end

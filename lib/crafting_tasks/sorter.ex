@@ -29,7 +29,7 @@ defmodule CraftingTasks.Sorter do
         result
 
       {_, nil} ->
-        raise "cannot find non dependent task"
+        raise CraftingTasks.SortException, "cannot find non dependent task"
 
       {_, task} ->
         new_result = result ++ [task]
