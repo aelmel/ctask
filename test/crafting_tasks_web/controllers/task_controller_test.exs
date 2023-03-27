@@ -66,7 +66,7 @@ defmodule CraftingTasksWeb.TaskControllerTest do
       assert json_response(conn, 400)["error"] == "expected list"
     end
 
-    test "cycle detect", %{conn: conn}  do
+    test "cycle detect", %{conn: conn} do
       payload = %{
         "tasks" => [
           %{"command" => "cat /tmp/file1", "name" => "task-2", "requires" => ["task-3"]},
@@ -82,7 +82,6 @@ defmodule CraftingTasksWeb.TaskControllerTest do
 
       conn = post(conn, ~p"/api/tasks/sort", payload)
       assert json_response(conn, 400)["error"] == "cannot find non dependent task"
-
     end
   end
 end

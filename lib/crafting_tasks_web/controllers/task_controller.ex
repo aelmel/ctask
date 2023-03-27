@@ -8,13 +8,13 @@ defmodule CraftingTasksWeb.TaskController do
 
   def action(conn, _) do
     args = [conn, conn.params]
+
     case Map.get(conn.params, "tasks") do
       nil -> conn |> put_status(:bad_request) |> json(%{"error" => "no task key"}) |> halt()
       [] -> apply(__MODULE__, action_name(conn), args)
-      [_|_] -> apply(__MODULE__, action_name(conn), args)
+      [_ | _] -> apply(__MODULE__, action_name(conn), args)
       _ -> conn |> put_status(:bad_request) |> json(%{"error" => "expected list"}) |> halt()
     end
-
   end
 
   def sort(conn, params) do
@@ -29,8 +29,8 @@ defmodule CraftingTasksWeb.TaskController do
       e ->
         conn
         |> put_status(:bad_request)
-        |> json( %{"error" => e.message})
-      end
+        |> json(%{"error" => e.message})
+    end
   end
 
   def script(conn, params) do
@@ -45,10 +45,9 @@ defmodule CraftingTasksWeb.TaskController do
       text(conn, script)
     rescue
       e ->
-
         conn
         |> put_status(:bad_request)
-        |> json( %{"error" => e.message})
-      end
+        |> json(%{"error" => e.message})
+    end
   end
 end
